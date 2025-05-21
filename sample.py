@@ -18,7 +18,7 @@ while 1:
             "amtSell":amtSell
         }
         fruits.append(obj)
-        print(fruits)
+        # print(fruits)
     
     if key ==2:
         while 1:
@@ -30,9 +30,17 @@ while 1:
             option = int(input("Enter the option"))
             
             if option == 1:
-                print("PIN options")
-                for i in range(0 , len(fruits)):
-                    print(f"{i+1} - {fruits[i]["fruit"]}")
+                while 1:
+                    basket=[]
+                    print("PIN options")
+                    for i in range(0 , len(fruits)):
+                        print(f"{i+1} - {fruits[i]["fruit"]}")
+                    print("404 - Bill")
+                    pin=int(input("Enter the PIN:"))
+                    if pin==404:
+                        break
+                    else:
+                        weigth
             
             if option == 4:
                 break
