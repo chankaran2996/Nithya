@@ -1,5 +1,7 @@
 print("WELCOME TO NITHI'S FRUIT SHOP")
 fruits=[]
+sold_fruits=[]
+collected_amount=0
 while 1:
     print("options")
     print("1-Add fruits")
@@ -23,8 +25,8 @@ while 1:
         while 1:
             print("options")
             print("1-new buyer")
-            print("2-exchange")
-            print("3-refund")
+            # print("2-exchange")
+            # print("3-refund")
             print("4-shop close")
             options=int(input("enter the options"))
             if options==1:
@@ -36,7 +38,17 @@ while 1:
                     print("404 - Bill")
                     pin=int(input("enter the pin"))
                     if pin==404:
-                        break 
+                        price=0
+                        print(f"BILL - {len(sold_fruits)}")
+                        if len(basket)>0:
+                            print("BILL")
+                            for x in range(len(basket)):
+                                price += basket[x]["amount"]
+                                print(f"{x+1} - {basket[x]["fruit"]} - {basket[x]["weight"]} * {basket[x]["amount_per_kg"]} = {basket[x]["amount"]}")  
+                            print(f"TOTAL AMOUNT={price}")
+                            sold_fruits.append(basket)
+                            collected_amount += price
+                        break
                     else:
                         if (pin>len(fruits)):
                             print("Enter the correct pin")
@@ -49,14 +61,17 @@ while 1:
                                 item={
                                     "fruit":fruits[pin-1]["fruit"],
                                     "amount": amount,
+                                    "amount_per_kg": fruits[pin-1]["amount_sold"],
                                     "weight": weight
                                 }
                                 basket.append(item)
                                 print(basket)
                             else:
                                 print("Sorry quantity is not avalible")
-                            
+
             if options==4:
+                print(basket)
+                print(f"collected_amount - {collected_amount}")
                 break
     if key==3:
         break
